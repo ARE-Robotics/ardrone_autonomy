@@ -95,11 +95,11 @@ extern "C"
     {
       ardrone_application_default_config.max_bitrate = 4000;
     }
-    ardrone_application_default_config.outdoor = 0;
-    ardrone_application_default_config.flight_without_shell = 0;
+    ardrone_application_default_config.outdoor = 0;//**liu, learn from tum_vision/ardrone_autonomy
+    ardrone_application_default_config.flight_without_shell = 0;//**liu, learn from tum_vision/ardrone_autonomy
     ardrone_application_default_config.detect_type = CAD_TYPE_MULTIPLE_DETECTION_MODE;//**liu
     ardrone_application_default_config.enemy_colors = ARDRONE_DETECTION_COLOR_ORANGE_GREEN; //**liu
-    ardrone_application_default_config.detections_select_v = TAG_TYPE_MASK(TAG_TYPE_BLACK_ROUNDEL);//**liu
+    ardrone_application_default_config.detections_select_v = TAG_TYPE_MASK(TAG_TYPE_BLACK_ROUNDEL);//**liu, default setting
 
     ardrone_application_default_config.navdata_options = NAVDATA_OPTION_FULL_MASK;
     ardrone_application_default_config.video_channel = ZAP_CHANNEL_HORI;
