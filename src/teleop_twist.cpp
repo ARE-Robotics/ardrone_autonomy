@@ -39,11 +39,13 @@ float old_up_down = -10.0;
 float old_turn = -10.0;
 
 int cam_state = DEFAULT_CAM_STATE;  // 0 for forward and 1 for vertical, change to enum later
+int tag_state = 0;//**liu
 int set_navdata_demo_value = DEFAULT_NAVDATA_DEMO;
 int32_t detect_enemy_color = ARDRONE_DETECTION_COLOR_ORANGE_YELLOW;
 int32_t detect_dtype = CAD_TYPE_MULTIPLE_DETECTION_MODE;
 int32_t detect_hori_type = TAG_TYPE_MASK(TAG_TYPE_SHELL_TAG_V2);
-int32_t detect_vert_type = TAG_TYPE_MASK(TAG_TYPE_BLACK_ROUNDEL);
+int32_t detect_vert_typeb = TAG_TYPE_MASK(TAG_TYPE_BLACK_ROUNDEL);//**liu
+int32_t detect_vert_typer = TAG_TYPE_MASK(TAG_TYPE_ROUNDEL);//**liu
 int32_t detect_indoor_hull = 0;
 int32_t detect_disable_placeholder = 0;
 int32_t detect_enable_placeholder = 1;
@@ -73,6 +75,24 @@ bool ToggleCamCallback(std_srvs::Empty::Request& request,
   const int _modes = (IS_ARDRONE1) ? 4 : 2;
   cam_state = (cam_state + 1) % _modes;
   ARDRONE_TOOL_CONFIGURATION_ADDEVENT(video_channel, &cam_state, NULL);
+  fprintf(stderr, "\nSetting camera channel to : %d.\n", cam_state);
+  return true;
+}
+//**liu ros service callback function for changing detecttype
+bool DetectTypeCallback(std_srvs::Empty::Request& request,
+                       std_srvs::Empty::Response& response)
+{
+  tag_state = (tag_state + 1) % 2;
+  if(0 == tag_state)
+  {
+    ARDRONE_TOOL_CONFIGURATION_ADDEVENT(detections_select_v, &detect_vert_typeb, NULL);
+  }else if(1 == tag_state)
+  {
+    ARDRONE_TOOL_CONFIGURATION_ADDEVENT(detections_select_v, &detect_vert_typer, NULL);
+  }else
+  {
+	  ROS_INFO("ERROR in cam_state");
+  }
   fprintf(stderr, "\nSetting camera channel to : %d.\n", cam_state);
   return true;
 }
