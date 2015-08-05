@@ -54,6 +54,7 @@ ARDroneDriver::ARDroneDriver()
   hori_pub = image_transport.advertiseCamera("ardrone/front/image_raw", 10);
   vert_pub = image_transport.advertiseCamera("ardrone/bottom/image_raw", 10);
   toggle_cam_srv = node_handle.advertiseService("ardrone/togglecam", ToggleCamCallback);
+  detect_type_srv = node_handle.advertiseService("ardrone/detecttype", DetectTypeCallback);//**liu
   set_cam_channel_srv = node_handle.advertiseService("ardrone/setcamchannel", SetCamChannelCallback);
   set_led_animation_srv = node_handle.advertiseService("ardrone/setledanimation", SetLedAnimationCallback);
   flat_trim_srv = node_handle.advertiseService("ardrone/flattrim", FlatTrimCallback);

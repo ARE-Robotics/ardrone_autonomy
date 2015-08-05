@@ -52,6 +52,10 @@ bool ToggleCamCallback(
     std_srvs::Empty::Request& request,
     std_srvs::Empty::Response& response);
 
+//**liu
+bool DetectTypeCallback(std_srvs::Empty::Request& request,
+                       std_srvs::Empty::Response& response);
+
 bool SetLedAnimationCallback(
     ardrone_autonomy::LedAnim::Request& request,
     ardrone_autonomy::LedAnim::Response& response);

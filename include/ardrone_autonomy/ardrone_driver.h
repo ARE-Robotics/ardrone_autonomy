@@ -105,6 +105,7 @@ private:
   tf::TransformBroadcaster tf_broad;
 
   ros::ServiceServer toggle_cam_srv;
+  ros::ServiceServer detect_type_srv;//**liu
   ros::ServiceServer set_cam_channel_srv;
   ros::ServiceServer set_led_animation_srv;
   ros::ServiceServer flat_trim_srv;
